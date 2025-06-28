@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday Roshika!</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            color: #ff4081;
+            text-shadow: 2px 2px 8px #fff;
+            margin-bottom: 0.2em;
+            animation: pop 1s ease;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .message {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 2em;
+            background: rgba(255,255,255,0.7);
+            padding: 1em 2em;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }
+        .balloons {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            width: 60px;
+            height: 80px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            background: linear-gradient(135deg, #ff4081 60%, #ffd740 100%);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            animation: float 8s linear infinite;
+        }
+        .balloon:nth-child(2) { left: 20vw; background: linear-gradient(135deg, #7c4dff 60%, #40c4ff 100%); animation-delay: 2s;}
+        .balloon:nth-child(3) { left: 40vw; background: linear-gradient(135deg, #00bfae 60%, #ffab40 100%); animation-delay: 4s;}
+        .balloon:nth-child(4) { left: 60vw; background: linear-gradient(135deg, #ffd740 60%, #ff4081 100%); animation-delay: 1s;}
+        .balloon:nth-child(5) { left: 80vw; background: linear-gradient(135deg, #ffab40 60%, #7c4dff 100%); animation-delay: 3s;}
+        @keyframes float {
+            0% { transform: translateY(0) scale(1);}
+            100% { transform: translateY(-110vh) scale(1.1);}
+        }
+        .cake {
+            margin: 2em auto 0 auto;
+            width: 200px;
+            height: 180px;
+            position: relative;
+            z-index: 1;
+        }
+        .cake-base {
+            width: 200px;
+            height: 80px;
+            background: #ffb347;
+            border-radius: 0 0 100px 100px / 0 0 80px 80px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        .cake-top {
+            width: 180px;
+            height: 60px;
+            background: #fff;
+            border-radius: 90px 90px 60px 60px / 60px 60px 40px 40px;
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        /* Cake Sprinkles */
+        .cake-sprinkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            z-index: 3;
+            opacity: 0.85;
+        }
+        .sprinkle1 { background: #ff6f61; top: 38px; left: 40px; }
+        .sprinkle2 { background: #ffe066; top: 55px; left: 70px; }
+        .sprinkle3 { background: #e07a5f; top: 28px; left: 120px; }
+        .sprinkle4 { background: #ffb347; top: 60px; left: 150px; }
+        .sprinkle5 { background: #fcb69f; top: 50px; left: 100px; }
+        .sprinkle6 { background: #7c4dff; top: 42px; left: 170px; }
+
+        /* Cake Face */
+        .cake-face {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 30px;
+            z-index: 4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cake-eye {
+            width: 12px;
+            height: 12px;
+            background: #e07a5f;
+            border-radius: 50%;
+            margin: 0 8px;
+            box-shadow: 0 2px 4px #e07a5f33;
+        }
+        .cake-smile {
+            width: 28px;
+            height: 14px;
+            border-bottom: 3px solid #e07a5f;
+            border-radius: 0 0 14px 14px;
+            margin: 0 8px;
+        }
+
+        .candle {
+            width: 12px;
+            height: 40px;
+            background: #ff4081;
+            position: absolute;
+            top: -30px;
+            left: 94px;
+            border-radius: 6px;
+            z-index: 2;
+        }
+        /* Candle flame burning effect */
+        .flame {
+            width: 22px;
+            height: 34px;
+            background: radial-gradient(ellipse at center, #fffbe0 0%, #ffd740 60%, #ff4081 100%);
+            position: absolute;
+            top: -44px;
+            left: 89px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            opacity: 0.88;
+            animation: flameFlicker 0.7s infinite alternate;
+            box-shadow: 0 0 28px 10px #ffd74099, 0 0 40px 18px #ff408144;
+            transition: opacity 0.5s;
+        }
+        @keyframes flameFlicker {
+            0% { transform: scaleY(1) scaleX(1); opacity: 0.88;}
+            40% { transform: scaleY(1.15) scaleX(0.92); opacity: 1;}
+            60% { transform: scaleY(0.95) scaleX(1.08); opacity: 0.93;}
+            100% { transform: scaleY(1) scaleX(1); opacity: 0.88;}
+        }
+        .flame.blown {
+            opacity: 0 !important;
+            animation: none !important;
+        }
+        .signature {
+            margin-top: 3em;
+            font-size: 1.1em;
+            color: #888;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        /* Floating hearts */
+        #floating-hearts {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .floating-heart {
+            position: absolute;
+            font-size: 2em;
+            opacity: 0.7;
+            animation: floatHeart 6s linear forwards;
+            pointer-events: none;
+            user-select: none;
+        }
+        @keyframes floatHeart {
+            0% { transform: translateY(100vh) scale(0.7) rotate(-10deg);}
+            80% { opacity: 0.8;}
+            100% { transform: translateY(-10vh) scale(1.2) rotate(10deg); opacity: 0;}
+        }
+        /* Confetti burst */
+        #confetti-burst {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 12px; height: 18px;
+            border-radius: 4px;
+            opacity: 0.85;
+            animation: confettiBurst 1.5s ease-out forwards;
+        }
+        @keyframes confettiBurst {
+            0% { transform: translate(0,0) scale(1);}
+            80% { opacity: 1;}
+            100% { transform: translate(var(--dx), var(--dy)) scale(1.2); opacity: 0;}
+        }
+
+        @keyframes letterPop {
+            0% { transform: scale(0.7) translateY(60px); opacity: 0; }
+            80% { transform: scale(1.05) translateY(-8px); opacity: 1; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div id="floating-hearts"></div>
+    <!-- Confetti burst -->
+    <div id="confetti-burst"></div>
+
+    <div class="balloons">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
+    <h1 style="
+    position:relative; 
+    z-index:2;
+    font-family: 'Pacifico', cursive, 'Segoe Script', 'Comic Sans MS', sans-serif;
+    font-size: 3.2em;
+    color: #ff4081;
+    margin-bottom: 0.2em;
+    letter-spacing: 2px;
+    padding: 0.1em 0.2em;
+    border-radius: 18px;
+    ">
+    🎉 Happy Birthday Roshika! 🎂
+    </h1>
+    <div class="message" id="main-message">
+        Wishing you a day filled with laughter, love, and magical moments.<br>
+        May your dreams soar as high as these balloons!<br>
+        <strong>Have a uniquely wonderful year ahead!</strong>
+    </div>
+    <div class="cake" id="cake">
+        <div class="cake-base"></div>
+        <div class="cake-top"></div>
+        <!-- Sprinkles -->
+        <div class="cake-sprinkle sprinkle1"></div>
+        <div class="cake-sprinkle sprinkle2"></div>
+        <div class="cake-sprinkle sprinkle3"></div>
+        <div class="cake-sprinkle sprinkle4"></div>
+        <div class="cake-sprinkle sprinkle5"></div>
+        <div class="cake-sprinkle sprinkle6"></div>
+        <!-- Cute face -->
+        <div class="cake-face">
+            <div class="cake-eye"></div>
+            <div class="cake-smile"></div>
+            <div class="cake-eye"></div>
+        </div>
+        <div class="candle"></div>
+        <div class="flame" id="flame" style="cursor:pointer;" title="Blow out the candle!"></div>
+    </div>
+    <div class="message" id="wish-message" style="display:none; background: #fffbe0; color:#ff4081; font-size:1.3em; border:2px dashed #ffb347;">
+        💖 Make a wish, Roshika! 💖<br>
+        May your year be as bright as your smile!
+    </div>
+    <div class="signature">
+        With lots of joy,<br>
+        <span style="color:#ff4081; font-weight:bold; font-size:1.15em; letter-spacing:1px;">By Rahul</span>
+    </div>
+
+    <!-- Add this popup letter markup just before the closing </body> tag -->
+    <div id="letter-popup" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.35); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background: #fffbe0; border-radius: 18px; box-shadow: 0 8px 40px #ffb34755; padding: 2.5em 2em 2em 2em; max-width: 350px; margin:auto; border: 2px solid #ffb347; position:relative; animation: letterPop 0.7s cubic-bezier(.4,2,.6,1);">
+            <div style="font-size:2em; text-align:center; margin-bottom:0.5em;">💌</div>
+            <div style="font-size:1.15em; color:#e07a5f; text-align:center; margin-bottom:1em;">
+                Dear Roshika,<br>
+                <span style="color:#333; font-size:0.95em;">
+                    Wishing you a magical birthday filled with love, laughter, and dreams come true.<br>
+                    May your heart always be as bright as your smile!<br>
+                    <br>
+                    With lots of joy,<br>
+                    <span style="color:#ff4081; font-weight:bold;">Rahul</span>
+                </span>
+            </div>
+            <button id="close-letter" style="display:block; margin:1em auto 0 auto; background:#ffb347; color:#fff; border:none; border-radius:8px; padding:0.5em 1.5em; font-size:1em; cursor:pointer; font-weight:bold;">Close</button>
+        </div>
+    </div>
+
+    <script>
+    // Floating hearts
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.textContent = ['💖','💗','❤️','💕'][Math.floor(Math.random()*4)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (1.5 + Math.random()*1.5) + 'em';
+        document.getElementById('floating-hearts').appendChild(heart);
+        setTimeout(() => heart.remove(), 6500);
+    }
+    setInterval(createHeart, 900);
+
+    // Confetti burst
+    function confettiBurst(x, y) {
+        const colors = ['#ff6f61', '#ffe066', '#ffb347', '#fffbe0', '#fcb69f', '#e07a5f', '#7c4dff', '#40c4ff'];
+        const burst = document.getElementById('confetti-burst');
+        for(let i=0; i<32; i++) {
+            const piece = document.createElement('div');
+            piece.className = 'confetti-piece';
+            piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+            piece.style.left = x + 'px';
+            piece.style.top = y + 'px';
+            const angle = Math.random() * 2 * Math.PI;
+            const distance = 120 + Math.random()*80;
+            piece.style.setProperty('--dx', Math.cos(angle)*distance + 'px');
+            piece.style.setProperty('--dy', Math.sin(angle)*distance + 'px');
+            burst.appendChild(piece);
+            setTimeout(() => piece.remove(), 1600);
+        }
+    }
+
+    // Letter popup logic
+    const letterPopup = document.getElementById('letter-popup');
+    const closeLetter = document.getElementById('close-letter');
+
+    closeLetter.addEventListener('click', function() {
+        letterPopup.style.display = 'none';
+    });
+
+    // Candle blowout and wish message
+    const flame = document.getElementById('flame');
+    const wishMsg = document.getElementById('wish-message');
+    flame.addEventListener('click', function(e) {
+        flame.classList.add('blown');
+        wishMsg.style.display = 'block';
+        confettiBurst(window.innerWidth/2, flame.getBoundingClientRect().top+20);
+        setTimeout(() => {
+            wishMsg.style.display = 'none';
+            flame.classList.remove('blown');
+            // Show letter popup after wish message disappears
+            setTimeout(() => {
+                letterPopup.style.display = 'flex';
+            }, 400);
+        }, 3500);
+    });
+    </script>
+</body>
+</html>
